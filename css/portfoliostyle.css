@@ -1,0 +1,127 @@
+body {
+  background-color: rgb(38, 43, 44);
+  font-family: Helvetica, Arial, sans-serif;
+  /*font stack: if the computer doesn't have Helvetica, 
+    it'll display Arial, and if it doesn' have that, the computer's default sans serif font at least;
+    but ideally use a font that lots of systems have;
+    see cssfontstack.com*/
+  color: whitesmoke;
+  font-weight: lighter;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.33),
+    rgb(255, 255, 255),
+    rgba(255, 255, 255, 0.33)
+  );
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto; /*equal margins on both sides --> centred*/
+}
+
+.container > div {
+  margin: 30px auto;
+}
+
+.intro {
+  text-align: center;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-rows: auto; /*2 rows*/
+  /*grid-template-columns: 33.3% 33.3% 33.3%; */ /*3 columns*/
+  grid-template-columns: auto auto auto;
+}
+.project-wrapper {
+  /* margin: auto;*/
+  justify-self: center;
+  padding: 5px;
+  position: relative;
+}
+
+.project-wrapper > h5 {
+  position: absolute; /*to have text over element use position absolute on an element that is within a position relative*/
+  top: 50%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /*this is to bring text into middle - else if starts at 50 top and 50 left, 
+  will write from there to right and be off to the right*/
+  color: white;
+  visibility: hidden;
+  z-index: 2;
+  transition: all ease-in-out 0.2%;
+}
+.project-wrapper:hover > h5 {
+  visibility: visible;
+}
+
+.project-image {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  transition: all ease in-out 0.2%;
+}
+
+.project-image:hover {
+  filter: brightness(0.75);
+}
+@media (max-width: 950px) {
+  /*if display shrinks to below 600px (mobile phone screen), this will come into effect:*/
+  .projects-grid {
+    /* grid-template-columns: 50% 50%;*/ /*2 column*/
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto; /*3rows --> all one below other instead of two next to each other*/
+  }
+}
+@media (max-width: 650px) {
+  /*if display shrinks to below 600px (mobile phone screen), this will come into effect:*/
+  .projects-grid {
+    grid-template-columns: auto; /*1 column*/
+    grid-template-rows: auto auto auto auto auto auto; /*6 rows --> all one below other instead of two next to each other*/
+  }
+}
+
+.social-links-grid {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+}
+
+.social-links {
+  margin: auto;
+}
+
+.social-icon {
+  width: 50px;
+  padding: 10px;
+}
+
+form {
+  width: 250px;
+  margin: 0 auto;
+}
+
+form input,
+textarea {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  width: 240px;
+}
+
+form input[type="submit"] {
+  width: 250px;
+}
+
+.submit-button-wrapper {
+  margin: 10px 0; /*1opx top and bottom, 0 left and right*/
+}

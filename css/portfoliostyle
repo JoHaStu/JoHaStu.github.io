@@ -1,0 +1,14 @@
+body {
+  background-color: rgb(38, 43, 44);
+  font-family: Helvetica, Arial, sans-serif;
+  /*font stack: if the computer doesn't have Helvetica, 
+    it'll display Arial, and if it doesn' have that, the computer's default sans serif font at least;
+    but ideally use a font that lots of systems have;
+    see cssfontstack.com*/
+  color: whitesmoke;
+  font-weight: lighter;
+}
+
+#projects.img {
+  width: 30%;
+}
