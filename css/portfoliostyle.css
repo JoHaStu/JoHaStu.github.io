@@ -5,8 +5,13 @@ body {
     it'll display Arial, and if it doesn' have that, the computer's default sans serif font at least;
     but ideally use a font that lots of systems have;
     see cssfontstack.com*/
-  color: whitesmoke;
+   color: rgb(172, 194, 205);
   font-weight: lighter;
+}
+
+h1,
+h3 {
+  color: azure;
 }
 
 hr {
