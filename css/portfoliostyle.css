@@ -35,20 +35,38 @@ hr {
 
 .projects-grid {
   display: grid;
-  grid-template-rows: auto; /*2 rows*/
+  grid-template-rows: auto auto auto; /*3 rows*/
   /*grid-template-columns: 33.3% 33.3% 33.3%; */ /*3 columns*/
   grid-template-columns: auto auto auto;
 }
+
+@media (max-width: 950px) {
+  /*if display shrinks to below 600px (mobile phone screen), this will come into effect:*/
+  .projects-grid {
+    /* grid-template-columns: 50% 50%;*/ /*2 column*/
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto auto auto auto; /*5rows --> all one below other instead of two next to each other*/
+  }
+}
+@media (max-width: 650px) {
+  /*if display shrinks to below 600px (mobile phone screen), this will come into effect:*/
+  .projects-grid {
+    grid-template-columns: auto; /*1 column*/
+    grid-template-rows: auto auto auto auto auto auto auto auto auto; /*9 rows --> all one below other instead of two next to each other*/
+  }
+}
+
 .project-wrapper {
   /* margin: auto;*/
   justify-self: center;
-  padding: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
   position: relative;
 }
 
 .project-wrapper > h5 {
   position: absolute; /*to have text over element use position absolute on an element that is within a position relative*/
-  top: 50%;
+  top: 35%;
   left: 50%;
   transform: translate(
     -50%,
@@ -58,8 +76,18 @@ hr {
   color: white;
   visibility: hidden;
   z-index: 2;
-  transition: all ease-in-out 0.2%;
+  /* transition: all ease-in-out 0.2%;*/
 }
+
+/*.project-wrapper > h5 {
+  text-align: center;
+  margin-bottom: 0;
+}*/
+.project-wrapper > p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
 .project-wrapper:hover > h5 {
   visibility: visible;
 }
@@ -73,21 +101,6 @@ hr {
 
 .project-image:hover {
   filter: brightness(0.75);
-}
-@media (max-width: 950px) {
-  /*if display shrinks to below 600px (mobile phone screen), this will come into effect:*/
-  .projects-grid {
-    /* grid-template-columns: 50% 50%;*/ /*2 column*/
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto auto; /*3rows --> all one below other instead of two next to each other*/
-  }
-}
-@media (max-width: 650px) {
-  /*if display shrinks to below 600px (mobile phone screen), this will come into effect:*/
-  .projects-grid {
-    grid-template-columns: auto; /*1 column*/
-    grid-template-rows: auto auto auto auto auto auto; /*6 rows --> all one below other instead of two next to each other*/
-  }
 }
 
 .social-links-grid {
