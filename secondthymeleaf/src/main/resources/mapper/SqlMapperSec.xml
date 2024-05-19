@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.project.second.mapper.SecondMapper">
+ 
+ <select id="getAll" resultType="java.util.HashMap">
+    	SELECT boardid, title, reg_id, CAST(reg_date AS VARCHAR(30)) AS reg_date
+    	FROM tb_board  
+    	ORDER BY reg_date DESC
+ </select> 
+
+ 
+ <select id="checkPassword" parameterType="String" resultType="Integer">
+    	SELECT COUNT(*)
+    	FROM TB_user
+    	WHERE id = #{enterid} AND pw = #{enterpw}
+    </select>
+    
+    <select id="checkUser" parameterType="String" resultType="Integer">
+    	SELECT COUNT(*) 
+    	FROM TB_user
+    	WHERE id = #{enterid}
+    </select>
+ 
+ 	 <insert id="register" parameterType="String">
+    	INSERT INTO tb_user(id, name, pw)
+    	VALUES (#{enterid}, #{entername}, #{enterpw})
+    </insert>
+    
+    <insert id="insert" parameterType="java.util.HashMap">
+    	INSERT INTO tb_board(title, content, reg_id, reg_date)
+    	VALUES (#{title}, #{content}, #{reg_id}, CURRENT_TIMESTAMP())
+    </insert>
+    
+     <delete id="delete">
+        Delete from tb_board
+        WHERE boardid = #{boardid}
+    </delete>
+    
+    <select id="oneRow" resultType="java.util.HashMap">
+    	SELECT CAST(boardid AS VARCHAR(1000)) AS boardid, title, content, reg_id, CAST(reg_date AS VARCHAR(30)) AS reg_date
+    	FROM tb_board  
+    	WHERE boardid = #{boardid}
+    </select>
+ 
+    <update id="update" parameterType="String">
+    	UPDATE tb_board
+    	SET boardid = #{boardid}, title=#{title}, content=#{content}
+    	WHERE boardid = #{boardid}
+    </update>
+    
+    <select id="getComments" resultType="java.util.HashMap">
+    	SELECT CAST(boardid AS VARCHAR(1000)) AS boardid, CAST(commentsid AS VARCHAR(1000)) AS commentsid, comm_content, comreg_id, CAST(reg_date AS VARCHAR(30)) AS reg_date
+    	FROM tb_comments
+    	WHERE boardid = #{boardid}
+    	ORDER BY reg_date DESC
+    </select> 
+    
+ 
+ 	<delete id="deleteCom">
+        Delete from tb_comments
+        WHERE boardid = #{boardid} 
+        AND commentsid = #{commentsid}
+    </delete>
+    
+    <insert id="addComment" parameterType="java.util.HashMap">
+    	INSERT INTO tb_comments(boardid, comm_content, comreg_id, reg_date)
+    	VALUES (#{boardid}, #{comm_content}, #{comreg_id}, CURRENT_TIMESTAMP()) 
+    </insert>
+    
+    <select id="search">
+    	SELECT boardid, title, reg_id, CAST(reg_date AS VARCHAR(30)) AS reg_date
+    	FROM tb_board  
+    	WHERE title LIKE '%${searchword}%'
+    	ORDER BY reg_date DESC
+    </select>
+ 
+ </mapper>
