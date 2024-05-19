@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.vueproject.thirdvue.mapper.Mapper3Vue">
+ 
+ 
+ <select id="checkPassword" parameterType="String" resultType="Integer">
+    	SELECT COUNT(*)
+    	FROM TB_user
+    	WHERE id = #{id} AND pw = #{pw}
+    </select>
+    
+     <select id="checkUser" parameterType="String" resultType="Integer">
+    	SELECT COUNT(*) 
+    	FROM TB_user
+    	WHERE id = #{enterid1}
+    </select>
+    
+    <insert id="register" parameterType="String">
+    	INSERT INTO tb_user(id, pw)
+    	VALUES (#{enterid1}, #{enterpw1})
+    </insert>
+ 
+ 	 <select id="getAll" resultType="java.util.HashMap">
+    	SELECT prodcode, prodname, lotno, qty, proddate, enddate
+    	FROM tb_inventory
+    	ORDER BY prodname ASC
+     </select> 
+     
+     <!-- <select id="getCategories" resultType="java.util.HashMap">
+    	SELECT prodnamecat, lotnocat
+    	FROM tb_categories
+     </select>  -->
+     <select id="getProdnames" resultType="java.util.HashMap">
+    	SELECT prodnamecat
+    	FROM tb_prodnamecat
+     </select> 
+     
+     <select id="getLotnos" resultType="java.util.HashMap">
+    	SELECT lotnocat
+    	FROM tb_lotnocat
+     </select> 
+     
+
+    <insert id="insert" parameterType="java.util.HashMap">
+    	INSERT INTO tb_inventory(prodname, lotno, qty, proddate, enddate)
+    	VALUES (#{prodname}, #{lotno}, #{qty}, #{proddate}, #{enddate})
+    </insert>
+    
+     <select id="oneRow" resultType="java.util.HashMap">
+    	SELECT CAST(prodcode AS VARCHAR(1000)) AS prodcode, prodname, lotno, CAST(qty AS VARCHAR(1000)) AS qty, CAST(proddate AS VARCHAR(30)) AS proddate, CAST(enddate AS VARCHAR(30)) AS enddate
+    	FROM tb_inventory
+    	WHERE prodcode = #{prodcode}
+     </select>
+     
+     <update id="update" >
+    	UPDATE tb_inventory
+    	SET prodcode=#{prodcode}, prodname=#{prodname}, lotno=#{lotno}, qty=#{qty}, proddate=#{proddate}, enddate=#{enddate}
+    	WHERE prodcode=#{prodcode}
+    </update>
+    
+     <delete id="delete">
+        Delete from tb_inventory
+        WHERE prodcode = #{prodcode}
+    </delete>
+    
+    <select id="search" resultType="java.util.HashMap">
+        SELECT CAST(prodcode AS VARCHAR(100)) AS prodcode, prodname, lotno, CAST(qty AS VARCHAR(1000)) AS qty, CAST(proddate AS VARCHAR(30)) AS proddate, CAST(enddate AS VARCHAR(30)) AS enddate
+        FROM tb_inventory 
+        WHERE prodname LIKE '%${paramword}%'
+    	ORDER BY prodname ASC
+    </select>
+    
+     
+ </mapper>
