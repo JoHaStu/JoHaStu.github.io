@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"> 
+<head>
+<title>Home Page Third Project</title>
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="page-container">
+<div class="header">
+    <h2 style="color:white;">
+        Third Project
+    </h2>
+</div>
+<div id="navdiv" class="nav_menu">
+</div><br>
+<span class="error" th:block th:if="${error=='wrongpw'}">Wrong password :(</span>
+
+<div class="centre-content">
+<div class="columnA">
+  
+   <div id="login-popup">
+   <form id="loginForm" action="/login" class="form-container">
+    <h2>Login</h2>
+
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="entername" required>
+
+    <label for="pw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="enterpw" required>
+
+    <button type="submit" class="btn">Login</button>
+    <button type="button" class="btn register"><a id="registerFormOpen" href="/reghome">Register</a></button>
+ 
+  </form>
+  </div>
+  
+</div>
+
+<div class="columnB">
+    <h2></h2><br>
+
+    <p>
+      
+    </p>
+</div>
+</div>
+
+<div class="footer">
+    Hanna's third little Spring Boot Project using MyBatis and Thymeleaf
+</div>
+</div>
+
+<script th:inline="javascript">
+	
+  /*$("#loginFormbtn").on("click", function fn_openlogin() {
+  $("#login-popup").show();
+ // $("#login-popup").css("display","block")
+  });
+ 
+  function fn_closelogin() {
+  //$("#login-popup").css("display","none")  
+  $("#login-popup").hide();
+  }
+  */
+  
+	
+</script>
+
+</body>
+</html>
