@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Update Item</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="updmain" class="changemaindiv">
+  <div id="mstUpd" class="changeformdiv">
+   
+		<form id="mstupform" autocomplete="on" action="/updateMst" method="post">
+        <fieldset style="display:inline-block; padding:25px">
+        <legend>Update Item</legend>
+        <label style="margin-right: 10px;">Code (fixed)</label><input type="text" id="mst_cd" name="mst_cd" th:value="${mst_cd}"></p>
+        <label style="margin-right: 40px;">Name</label><input type="text" id="mst_name" name="mst_name" th:value="${mst_name}"></p>
+        <label style="margin-right: 40px;">Notes</label><input type="text" id="mst_notes" name="mst_notes" th:value="${mst_notes}"></p>
+		<input type="submit" value="Update Entry">
+      </fieldset>
+    </form>
+    
+
+  </div>
+</div>
+</body>
+
+</html>

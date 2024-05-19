@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"> 
+
+<head>
+    <title>Combined List Search</title>
+    <meta charset="utf-8">  
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+</head>
+<body> 
+  
+<div class="editform"> 
+<fieldset >
+		<legend>Select a category and enter your search term:</legend>
+		<form id="allsearch" name="allsearch" autocomplete="on" method="post">
+			<label for="searchoptions">Search for:</label>
+			<select name="searchoptions" id="searchoptions">
+			  <option value="1">Master Name</option>
+			  <option value="2">Master Note</option>
+			  <option value="3">Detail Name</option>
+			  <option value="4">Detail Note</option>
+			</select>	
+	 		<input type="search" id="searchword" name="searchword" value="Search for Name/Note" onclick="fn_allsearch()" >
+			<button id="allsearch_btn">Search</button>
+		 </form>
+		 </fieldset>
+		 </div>
+  
+  <div class="msttablediv">
+    <table>
+     <thead>
+    <tr>
+         <th>Master Code</th>
+         <th>Master Name</th>
+         <th>Master Notes</th>
+         <th>Master Input Date</th>
+         <th>Master Update Date</th>
+         <th>Detail Code</th>
+         <th>Detail Name</th>
+         <th>Detail Notes</th>
+         <th>Detail Input Date</th>
+         <th>Detail Update Date</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr th:each="all : ${alllist}">
+	     <td th:text="${all.mst_cd}">Master Code</td>    
+         <td th:text="${all.mst_name}">Master Name</td>
+         <td th:text="${all.mst_notes}">Master Notes</td>
+         <td th:text="${all.mst_reg_date}">Master Input Date</td>
+         <td th:text="${all.mst_upd_date}">Master Update Date</td>
+         <td th:text="${all.dtl_cd}">Detail Code</td>    
+         <td th:text="${all.dtl_name}">Detail Name</td>
+         <td th:text="${all.dtl_notes}">Detail Notes</td>
+         <td th:text="${all.dtl_reg_date}">Detail Input Date</td>
+         <td th:text="${all.dtl_upd_date}">Detail Update Date</td>
+     </tr>
+     </tbody>
+     </table>
+     </divclass>
+     
+     <div>
+		 <br>
+		 <br>
+	 </div>
+     </body>
+     
+     
+     <script th:inline="javascript">
+		 
+	$("#allsearch_btn").on("click", function fn_allsearch(){ 
+   	$("#allsearch").attr("action", "/searchAll");
+   	 $("#allsearch").submit();
+  });
+	 </script>
+ 
+	 
+	
+    
+    
+</html>

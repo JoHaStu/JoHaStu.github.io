@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"> 
+
+<head>
+    <title>Mini Project List</title>
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    
+</head>
+
+<body> 
+  
+<div class="editform"> 
+<fieldset >
+		<legend> Full Master List Edit </legend>
+		<form id="mainedit" name="mainedit" autocomplete="on" method="post">
+ 		<input type="search" id="search" name="search" value="Search by Name" onclick="fn_search()" >
+		<button id="search_btn">Search</button>
+        <button><a href="/insertMstForm">Add an Item</a></button>
+        <button><a href="/allSearch">Combined Overview</a></button>
+ </form>
+ </fieldset>
+ </div>
+  
+  <div class="msttablediv">
+    <table>
+     <thead>
+    <tr>
+         <th>Select</th>
+         <th>Code</th>
+         <th>Name</th>
+         <th>Notes</th>
+         <th>Input Date</th>
+         <th>Update Date</th>
+         <th>Update</th>
+         <th>Delete</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr th:each="mst : ${list}"  >
+		 <td><input type="checkbox" id="checkrow" name="checkrow" th:data-parameter1="${mst.mst_cd}"  th:onclick="fn_searchdtl(this.getAttribute('data-parameter1'))"/></td>
+	     <td th:text="${mst.mst_cd}">Code</td>    
+         <td th:text="${mst.mst_name}">Name</td>
+         <td th:text="${mst.mst_notes}">Notes</td>
+         <td th:text="${mst.reg_date}">Input Date</td>
+         <td th:text="${mst.upd_date}">Update Date</td>
+         <td><button><a th:href="@{'/updateMstForm?mst_cd=' + ${mst.mst_cd}}">Update</a></button></td>
+         <td><button><a th:href="@{/deleteMst(mst_cd=${mst.mst_cd})}">Delete</a></button></td>
+     </tr>
+     </tbody>
+     </table>
+     </div>
+     
+     <div>
+		 <br>
+		 <br>
+	 </div>
+     
+     <!--
+		 ============================
+		 DETAILS TABLE
+		 ============================
+     -->
+     
+     
+
+	<div class="editform"> 
+	<fieldset>
+		<legend>Detail List Edit </legend>
+		<form id="detailedit" name="detailedit" method="post">
+        <input type="hidden" name = "mst_cd_dtl" id = "mst_cd_dtl" th:value="${mst_cd_dtl}" />
+ 		<input type="search" id="dtlsearch" name="dtlsearch" value="Search by Name" onclick="fn_dtlsearch('${mst_cd_dtl}')" >
+		<button id="dtlsearch_btn">Search</button>
+        <button th:onclick="fn_openDtl()">Add an Item</button>
+   </form>
+   </fieldset>
+   </div>
+ 
+   
+ <div id="dtltablediv" class="dtltablediv"> 
+    <table id="tb_dtl">
+     <thead>
+    <tr>
+         <th>Main Code</th>
+         <th>Detail Code</th>
+         <th>Detail Name</th>
+         <th>Detail Notes</th>
+         <th>Input Date</th>
+         <th>Update Date</th>
+         <th>Update</th>
+         <th>Delete</th>
+     </tr>
+     </thead>
+     <tbody>
+     <tr th:each="dtl : ${dtllist}">
+         <td th:text="${dtl.mst_cd_dtl}">Main Code</td>
+         <td th:text="${dtl.dtl_cd}">Detail Code</td>
+         <td th:text="${dtl.dtl_name}">Detail Name</td>
+         <td th:text="${dtl.dtl_notes}">Detail Notes</td>
+         <td th:text="${dtl.reg_date}">Input Date</td>
+         <td th:text="${dtl.upd_date}">Update Date</td>
+         <td><button><a th:href="@{/updateDtlForm(dtl_cd=${dtl.dtl_cd}, mst_cd_dtl=${mst_cd_dtl})}">Update</a></button></td>
+         <td><button><a th:href="@{/deleteDtl(dtl_cd=${dtl.dtl_cd}, mst_cd=${mst_cd_dtl})}">Delete</a></button></td>
+     </tr>
+     </tbody>
+     </table>
+     </div>
+   
+     </body>
+     
+     
+     
+     <script th:inline="javascript">
+		 
+		 
+  //mst search bar button	 
+  //var search = /*[[ @{/searchMst} ]]*/
+  $("#search_btn").on("click", function fn_search(){ 
+   	$("#mainedit").attr("action", "/searchMst");
+   	 $("#mainedit").submit();
+  });
+
+
+   //show details list
+   function fn_searchdtl(v_mst_cd){ 
+
+	   $("#mst_cd_dtl").val(v_mst_cd);
+	  $("#detailedit").attr("action", "/dtllist?mst_cd="+v_mst_cd);
+	 $("#detailedit").submit();
+  }
+   //show details list
+   function fn_openDtl(){ 
+
+	   if($("#mst_cd_dtl").val()==null || $("#mst_cd_dtl").val()==""){
+		   alert("Please choose a master code!");
+
+	   }else{
+	  $("#detailedit").attr("action", "/insertDtlForm");
+	 $("#detailedit").submit();
+      }
+  }
+  
+   //dtl search bar button	
+   //var dtlsearch = /*[[ @{/searchDtl} ]]*/ 
+  $("#dtlsearch_btn").on("click", function fn_dtlsearch() {
+	   if($("#mst_cd_dtl").val()==null || $("#mst_cd_dtl").val()==""){
+		   alert("Please choose a master code!");
+	
+	   }else{
+   	$("#detailedit").attr("action", "/searchDtl");
+   	$("#detailedit").submit();
+   	}
+  });
+  
+	 </script>
+	 
+	
+    
+    
+</html>

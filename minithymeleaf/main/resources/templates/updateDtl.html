@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Update Item</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="upddtlmain" class="changemaindiv">
+  <div id="dtlUpd" class="changeformdiv">
+   
+		<form id="dtlupform" autocomplete="on" action="/updateDtl" method="post">
+        <fieldset style="display:inline-block; padding:25px">
+        <legend>Update Detail Item</legend>
+        <label style="margin-right: 10px;">Master Code (fixed)</label><input type="text" id="mst_cd_dtl" name="mst_cd_dtl" th:value="${mst_cd_dtl}"></p>
+        <label style="margin-right: 10px;">Detail Code (fixed)</label><input type="text" id="dtl_cd" name="dtl_cd" th:value="${dtl_cd}"></p>
+        <label style="margin-right: 40px;">Detail Name</label><input type="text" id="dtl_name" name="dtl_name" th:value="${dtl_name}"></p>
+        <label style="margin-right: 40px;">Detail Notes</label><input type="text" id="dtl_notes" name="dtl_notes" th:value="${dtl_notes}"></p>
+		<input type="submit" value="Update Entry">
+      </fieldset>
+    </form>
+    
+
+  </div>
+</div>
+</body>
+
+
+<!--script>
+	function fn_dtlreturn(v_mst_cd){ 
+	   $("#mst_cd_dtl").val(v_mst_cd);
+	  $("#dtlupform").attr("action", "/dtllist?mst_cd="+v_mst_cd);
+	 $("#dtlupform").submit();
+  }	
+</script-->
+
+
+</html>

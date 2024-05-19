@@ -1,0 +1,70 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+table {   
+    width: 90%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background: hsla(193, 4%, 45%, 0.877);
+}
+
+tr,th,td {
+    border-bottom: 1px solid #444444;
+    padding: 15px;
+    }
+
+th{
+    background: hsla(180, 5%, 28%, 0.781); 
+}
+
+tr:hover {
+    background-color: #b0b6b6;
+}
+
+.msttablediv{
+    padding-top: 15px;
+    
+}
+
+.dtltablediv{
+	padding-top: 15px;
+}
+
+
+.editform form{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:medium; 
+    text-align:center;
+}
+
+.changemaindiv
+{
+    font-size:large; 
+    text-align: center;
+}
+
+.changeformdiv{
+height: 250px; 
+width: 50%; 
+font-size: small; 
+margin-left: auto; 
+margin-right: auto;
+}
+
+
+.commentsdiv{
+	padding-top: 30px; 
+	width: 90%;
+}
+
+.detailviewdiv{
+	width: 90%;
+	}

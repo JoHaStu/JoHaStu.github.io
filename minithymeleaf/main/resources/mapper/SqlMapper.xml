@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.mini.project.mapper.MiniMapper">
+    
+    <!--show all entries in master list-->
+    <select id="getAll" resultType="java.util.HashMap">
+    	SELECT mst_cd, mst_name, mst_notes, CAST(reg_date AS VARCHAR(30)) AS reg_date, CAST(upd_date AS VARCHAR(30)) AS upd_date
+    	FROM TB_mst  
+    </select> 
+    
+    <!--insert new entry into master list-->
+    <insert id="insertMst">
+    	INSERT INTO TB_mst(mst_cd, mst_name, mst_notes, reg_date, upd_date)
+    	VALUES (#{mst_cd}, #{mst_name}, #{mst_notes}, NOW(), NOW())
+    </insert>
+    
+    <!--check if master code already exists in master list (count number of occurences)-->
+    <select id="checkCode">
+    	SELECT COUNT(*)
+    	FROM TB_mst
+    	WHERE mst_cd = #{mst_cd}
+    </select>
+
+	<!--grab one row for update in master list-->
+	<select id="oneRowMst" resultType="java.util.HashMap" parameterType="String">
+    	SELECT mst_cd, mst_name, mst_notes
+    	FROM TB_mst  
+    	WHERE mst_cd = #{mst_cd}
+    </select> 
+
+	<!--update entry in master list-->
+    <update id="updateMst" parameterType="String">
+    	UPDATE TB_mst
+    	SET mst_cd=#{mst_cd}, mst_name=#{mst_name}, mst_notes=#{mst_notes}, upd_date=NOW()
+    	WHERE mst_cd = #{mst_cd}
+    </update>
+    
+    <!--delete entry from master list-->
+    <delete id="deleteMst">
+        Delete from TB_Mst
+        WHERE mst_cd = #{mst_cd}
+    </delete>
+
+	<!--search for entry in master list-->
+    <select id="searchMst" resultType="java.util.HashMap" parameterType="String">
+    	SELECT  mst_cd, mst_name, mst_notes, CAST(reg_date AS VARCHAR(30)) AS reg_date, CAST(upd_date AS VARCHAR(30)) AS upd_date 
+    	FROM TB_mst
+    	WHERE mst_name LIKE '%${search}%'
+    </select>
+
+<!-- 
+========================
+DETAILS LIST
+======================== 
+-->
+    
+    <!--get details for specific master code in master list-->
+    <select id="getAllDtl" resultType="java.util.HashMap" parameterType="String">
+    	SELECT 	mst_cd AS mst_cd_dtl , dtl_cd, dtl_name, dtl_notes,
+    	 CAST(reg_date AS VARCHAR(30)) AS reg_date, 
+    	 CAST(upd_date AS VARCHAR(30)) AS upd_date
+    	FROM TB_dtl  
+    	WHERE mst_cd = #{mst_cd_dtl}
+    </select> 
+    
+    <!--insert new entry into details list-->
+    <insert id="insertDtl" parameterType="java.util.HashMap">   	
+    	INSERT INTO TB_dtl(mst_cd, dtl_cd, dtl_name, dtl_notes, reg_date, upd_date)
+    	VALUES (#{mst_cd}, #{dtl_cd}, #{dtl_name}, #{dtl_notes}, NOW(), NOW())
+    </insert>
+    
+    <!--check that master and detail code combination doesn't exist (count number of occurences)-->
+    <select id="checkDtlCode" parameterType="String" resultType="Integer">
+    	SELECT COUNT(*)
+    	FROM TB_dtl
+    	WHERE dtl_cd = #{dtl_cd}
+    	AND mst_cd = #{mst_cd}
+    </select>
+    
+    <!--search for entry in details list-->
+     <select id="searchDtl" resultType="java.util.HashMap" parameterType="String">
+    	SELECT mst_cd AS mst_cd_dtl, dtl_cd, dtl_name, dtl_notes, CAST(reg_date AS VARCHAR(30)) AS reg_date, CAST(upd_date AS VARCHAR(30)) AS upd_date 
+    	FROM TB_dtl
+    	WHERE mst_cd = #{mst_cd} 
+    	and dtl_name LIKE '%${dtlsearch}%'
+    </select>
+    
+    <!--get one row for update in details list-->
+    <select id="oneRowDtl" resultType="java.util.HashMap" parameterType="String">
+    	SELECT mst_cd, dtl_cd, dtl_name, dtl_notes
+    	FROM TB_dtl 
+    	WHERE mst_cd = #{mst_cd} 
+    	AND dtl_cd = #{dtl_cd}
+    </select>
+    
+    <!--update entry in details list-->
+    <update id="updateDtl" parameterType="String">
+    	UPDATE TB_dtl
+    	SET mst_cd=#{mst_cd_dtl}, dtl_cd=#{dtl_cd}, dtl_name=#{dtl_name}, dtl_notes=#{dtl_notes}, upd_date=NOW()
+    	WHERE mst_cd = #{mst_cd_dtl}
+    	AND dtl_cd = #{dtl_cd}	
+    </update>
+    
+    <!--delete entry from details list-->
+    <delete id="deleteDtl">
+        Delete from TB_dtl
+        WHERE mst_cd = #{mst_cd}
+        AND dtl_cd = #{dtl_cd}
+    </delete>
+    
+    <select id="searchAll"    resultType="java.util.HashMap"   parameterType="String">
+	<![CDATA[	
+	SELECT a.mst_cd AS mst_cd, a.mst_name AS mst_name, a.mst_notes AS mst_notes , a.reg_date AS mst_reg_date, a.upd_date AS mst_upd_date, 
+	b.dtl_cd AS dtl_cd, b.dtl_name AS dtl_name, b.dtl_notes AS dtl_notes, b.reg_date AS dtl_reg_date, b.upd_date AS dtl_upd_date
+	From tb_mst a, tb_dtl b
+	Where a.mst_cd = b.mst_cd  
+	]]>
+	<if  test="searchoptions == 1">
+	    AND a.mst_name like '%${searchword}%'
+	  </if>
+	  <if test="searchoptions == 2">
+	    AND a.mst_notes like '%${searchword}%'
+	  </if>
+	<if test="searchoptions == 3">
+	    AND b.dtl_name like '%${searchword}%'
+	  </if>
+	<if test="searchoptions == 4">
+	    AND b.dtl_notes like '%${searchword}%'
+	  </if>
+	</select>
+     
+ </mapper>

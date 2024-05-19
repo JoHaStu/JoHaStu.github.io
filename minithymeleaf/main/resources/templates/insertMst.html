@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>New Input</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div id="insmain" class="changemaindiv">
+  <div id="mstIns" class="changeformdiv">
+   
+    <form id="mstinsform" autocomplete="on" action="/insertMst" method="post">
+      <fieldset style="display:inline-block; padding:25px">
+        <legend>New Entry</legend>
+        <label style="margin-right: 10px;">Code</label><input type="text" name="mst_cd"></p>
+        <label style="margin-right: 10px;">Name</label><input type="text" name="mst_name"></p>
+        <label style="margin-right: 10px;">Notes</label><input type="text" name="mst_notes"></p>
+		<input type="submit" value="Submit Entry">
+      </fieldset>
+    </form>
+  </div>
+
+</div>
+</body>
+</html>

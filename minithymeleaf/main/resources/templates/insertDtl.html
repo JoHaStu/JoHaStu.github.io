@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>New Input</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="dtlinsmain" class="changemaindiv">
+  <div id="dtlIns" class="changeformdiv">
+   
+    <form id="dtlinsform" autocomplete="on" action="/insertDtl" method="post">
+      <fieldset style="display:inline-block; padding:25px">
+        <legend>New Entry</legend>
+       <label style="margin-right: 10px;">Master Code</label><input type="text" name="mst_cd_dtl" th:value="${mst_cd_dtl}"></p>
+        <label style="margin-right: 10px;">Detail Code</label><input type="text" name="dtl_cd"></p>
+        <label style="margin-right: 10px;">Detail Name</label><input type="text" name="dtl_name"></p>
+        <label style="margin-right: 10px;">Detail Notes</label><input type="text" name="dtl_notes"></p>
+		<input type="submit" value="Submit Entry">
+      </fieldset>
+    </form>
+  </div>
+
+</div>
+</body>
+</html>
