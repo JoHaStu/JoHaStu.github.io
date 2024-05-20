@@ -5,7 +5,7 @@ body {
     it'll display Arial, and if it doesn' have that, the computer's default sans serif font at least;
     but ideally use a font that lots of systems have;
     see cssfontstack.com*/
-   color: rgb(172, 194, 205);
+  color: rgb(246, 237, 237);
   font-weight: lighter;
 }
 
@@ -100,6 +100,10 @@ hr {
 
 .project-wrapper:hover > h5 {
   visibility: visible;
+}
+
+.project-names {
+  font-weight: bolder;
 }
 
 .project-image {
