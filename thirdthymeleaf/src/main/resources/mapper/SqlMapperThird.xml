@@ -6,17 +6,17 @@
  <select id="checkPassword" parameterType="String" resultType="Integer">
     	SELECT COUNT(*)
     	FROM TB_user
-    	WHERE username = #{entername} AND pw = #{enterpw}
+    	WHERE id = #{entername} AND pw = #{enterpw}
     </select>
     
      <select id="checkUser" parameterType="String" resultType="Integer">
     	SELECT COUNT(*) 
     	FROM TB_user
-    	WHERE username = #{entername}
+    	WHERE id = #{entername}
     </select>
     
     <insert id="register" parameterType="String">
-    	INSERT INTO tb_user(username, pw)
+    	INSERT INTO tb_user(id, pw)
     	VALUES (#{entername}, #{enterpw})
     </insert>
  
