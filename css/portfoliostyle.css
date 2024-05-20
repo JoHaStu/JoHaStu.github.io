@@ -9,6 +9,14 @@ body {
   font-weight: lighter;
 }
 
+a {
+  color: rgb(246, 237, 237);
+}
+a:link {
+  /*color: rgb(246, 237, 237);*/
+  text-decoration: none;
+}
+
 h1,
 h3 {
   color: azure;
@@ -151,4 +159,38 @@ form input[type="submit"] {
 
 .submit-button-wrapper {
   margin: 10px 0; /*1opx top and bottom, 0 left and right*/
+}
+
+.minithymeleaf-screenshots-grid {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 50% 50%;
+}
+@media (max-width: 1300px) {
+  .minithymeleaf-screenshots-grid {
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto auto auto auto;
+  }
+}
+
+.screenshots-wrapper {
+  justify-self: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  /*background-color: rgb(0, 0, 0);*/
+}
+
+.screenshots-wrapper > p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.project-screenshot {
+  width: 100%;
+  height: auto;
+}
+
+.project-screenshot:hover {
+  filter: brightness(1.1);
 }
