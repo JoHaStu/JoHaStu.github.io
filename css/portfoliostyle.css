@@ -200,7 +200,4 @@ form input[type="submit"] {
   grid-template-columns: auto auto;
   grid-template-rows: auto;
   text-align: center;
-  a {
-    color: rgb(124, 175, 156);
-  }
 }
