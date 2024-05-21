@@ -58,6 +58,8 @@ public interface  MiniMapper {
 	//search for entry in details list
 	public void deleteDtl(String mst_cd, String dtl_cd);
 
+	public List<Map<String, String>> getAllCombined() throws Exception;
+	
 	public List<Map<String, String>> searchAll(String searchword);
 	
 	
