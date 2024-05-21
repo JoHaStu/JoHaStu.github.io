@@ -100,6 +100,11 @@ public class MiniService {
 			
 		}
 
+		public List<Map<String, String>> getAllCombined() throws Exception {
+			List<Map<String, String>> allCombined = miniMapper.getAllCombined();
+			return allCombined;
+		}
+	
 		public List<Map<String, String>> searchAll(String searchword) {
 			List<Map<String, String>> searchAll = miniMapper.searchAll(searchword);
 			return searchAll;
