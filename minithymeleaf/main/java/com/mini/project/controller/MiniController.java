@@ -297,14 +297,18 @@ public class MiniController {
 				 }
 				 
 				 //========================================
-				 //DETAILS LIST:
+				 //COMBINED LIST:
 				 //========================================
 				 
 				 
 				 @RequestMapping(value="/allSearch" , method = {RequestMethod.GET, RequestMethod.POST})
-				    public String allSearch(){
-				        return "allSearch"; //returns allSearch.html
-				    }
+				     public ModelAndView combinedList(ModelAndView model) throws Exception {
+					 List<Map<String, String>> alllist = service.getAllCombined();
+				      model.addObject("alllist", alllist);
+				      model.setViewName("allSearch");
+
+				      return model;
+				 }
 				     
 				 
 				 @RequestMapping(value="/searchAll" , method = {RequestMethod.GET, RequestMethod.POST})
