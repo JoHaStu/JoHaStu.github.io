@@ -107,7 +107,15 @@ DETAILS LIST
         WHERE mst_cd = #{mst_cd}
         AND dtl_cd = #{dtl_cd}
     </delete>
-    
+
+<!--show combined entries from master and detail lists-->
+ <select id="getAllCombined" resultType="java.util.HashMap">
+  SELECT a.mst_cd AS mst_cd, a.mst_name AS mst_name, a.mst_notes AS mst_notes , a.reg_date AS mst_reg_date, a.upd_date AS mst_upd_date, 
+	b.dtl_cd AS dtl_cd, b.dtl_name AS dtl_name, b.dtl_notes AS dtl_notes, b.reg_date AS dtl_reg_date, b.upd_date AS dtl_upd_date
+	From tb_mst a, tb_dtl b
+  ORDER BY mst_cd ASC
+</select>
+	 
     <select id="searchAll"    resultType="java.util.HashMap"   parameterType="String">
 	<![CDATA[	
 	SELECT a.mst_cd AS mst_cd, a.mst_name AS mst_name, a.mst_notes AS mst_notes , a.reg_date AS mst_reg_date, a.upd_date AS mst_upd_date, 
