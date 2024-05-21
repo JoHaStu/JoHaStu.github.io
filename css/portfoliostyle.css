@@ -161,13 +161,13 @@ form input[type="submit"] {
   margin: 10px 0; /*1opx top and bottom, 0 left and right*/
 }
 
-.minithymeleaf-screenshots-grid {
+.screenshots-grid {
   display: grid;
   grid-template-rows: auto auto auto;
   grid-template-columns: 50% 50%;
 }
 @media (max-width: 1300px) {
-  .minithymeleaf-screenshots-grid {
+  .screenshots-grid {
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto auto auto;
   }
