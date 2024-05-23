@@ -1,8 +1,6 @@
 <template>
     <div class="page-container">
-    <div class="header">
-       <h2 style="color:white;">Mini Vue Project</h2>
-    </div>
+      <HomeHeader/>
 
     <div id="NewProduct" class="insertdiv">
 	
@@ -32,8 +30,13 @@
 
 <script>
 import axios from 'axios';
+import HomeHeader from '../components/HomeHeader.vue';
 
 export default {
+  components:{
+    HomeHeader
+  },
+
  data() {
     return {
       result: {

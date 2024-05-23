@@ -1,5 +1,6 @@
 <template>
     <div class="pagecontainer">
+      <HomeHeader/>
         <HeaderNavbar v-on:search="searchMst"/>
 
     
@@ -40,6 +41,7 @@
 </template>
 
 <script>
+import HomeHeader from '../components/HomeHeader.vue';
 import HeaderNavbar from '../components/HeaderNavbar.vue';
 import DtlList from '../components/DtlList.vue';
 
@@ -51,6 +53,7 @@ export default {
   name: 'ListView',
   
   components: {
+    HomeHeader,
     HeaderNavbar,
     DtlList
   },

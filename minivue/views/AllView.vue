@@ -2,11 +2,9 @@
 <div>
 
     <div>
-    <div class="header">
-    <h2 style="color:white;">
-        Mini Vue Project
-    </h2>
-    </div>
+    
+    <HomeHeader/>
+   
     <div id="sessnavdiv" class="nav_menu">
       <div class="columnA">
         <label for="searchoptions" style="font-size: smaller">Search for:</label>
@@ -57,10 +55,15 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import HomeHeader from '@/components/HomeHeader.vue';
 
 export default {
 name: 'AllView',
+
+components:{
+HomeHeader
+},
 
 data() {
     return {
