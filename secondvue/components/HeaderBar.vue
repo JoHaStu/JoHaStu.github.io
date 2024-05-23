@@ -1,21 +1,44 @@
 <template>
  
         <div class="header">
-        <h2 style="color:white;">
-           Second Vue Project
-        </h2>
+        <h2><a href="#" @click="goBackHome()">Second Vue Project</a></h2>
         </div>      
  
     </template>
     
     <script>
     
-    
+    import store from '@/store/store';
     
     export default {
       
       name: 'HeaderBar',
     
+      components: { 
+       
+      },
+    
+     
+
+      data(){
+        return {
+         
+         username: ''
+
+            };
+    
+      },
+      created(){
+       this.username = this.$store.state.SessionUser
+},
+    
+      methods:{
+
+        goBackHome(){
+          store.commit('setSessionUser', this.username)
+            this.$router.push({name: 'SessionHomeView'})
+        }
+    }
     }
     </script>
     
@@ -28,6 +51,11 @@
     text-align: center; 
     /*width: 100%;*/
     margin-top: 0px;
+    }
+
+    a{
+text-decoration: none;
+color: white;
     }
     
     </style>
