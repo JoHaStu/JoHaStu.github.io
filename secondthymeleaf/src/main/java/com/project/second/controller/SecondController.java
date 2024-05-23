@@ -66,6 +66,24 @@ public class SecondController {
 		 return model;
 	   }
 	
+	/*---------------------------------*/
+	@RequestMapping(value="/backHome" , method = {RequestMethod.GET, RequestMethod.POST})
+	   public ModelAndView backHome(HttpServletRequest request, Model model2) throws Exception{
+		 ModelAndView model = new ModelAndView();
+		 
+		 HttpSession session = request.getSession();
+		 String userid = session.getAttribute("enterid")+"";
+		 
+		 model2.addAttribute("userid", userid);
+		 
+		 List<Map<String, String>> listall = service.getAll();
+	     model.addObject("list", listall);
+	     model.setViewName("/sessionMain"); 
+	     
+		 return model;
+	   } 
+	/*--------------------------------*/
+	
 	//register new user
 	//get register form
 	@RequestMapping(value="/registerForm" , method = {RequestMethod.GET, RequestMethod.POST})
