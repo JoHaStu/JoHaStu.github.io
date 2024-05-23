@@ -1,7 +1,9 @@
 <template>
     <div>
       
-        <HeaderBar />
+      <div class="header">
+        <h2>Second Vue Project</h2>
+        </div>  
         <LoginBar />
 
 <table>
@@ -30,13 +32,13 @@
   
 <script>
   import axios from 'axios';
-  import HeaderBar from '../components/HeaderBar.vue';
+ 
   import LoginBar from '../components/LoginBar.vue' 
 
   export default {
     name: 'HomeView',
     components:{
-        HeaderBar,
+       
         LoginBar
     },
     data() {
@@ -64,6 +66,15 @@
   
 <style scoped>
   
+  .header {
+    background-color: rgb(126, 2, 2);
+    padding: 15px;
+    text-align: center; 
+    /*width: 100%;*/
+    margin-top: 0px;
+    color: white;
+    }
+
 * {
 box-sizing: border-box;
 font-family: Arial, Helvetica, sans-serif;

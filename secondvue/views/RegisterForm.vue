@@ -1,6 +1,8 @@
 <template>
 <div>
-    <HeaderBar />
+  <div class="header">
+        <h2>Second Vue Project</h2>
+        </div>  
     <div class="columnA"> 
       <div class="tabcontent">
       <form @submit.prevent="register()" class="form-container">
@@ -33,13 +35,13 @@
     
     <script>
     import axios from 'axios';
-    import HeaderBar from '../components/HeaderBar.vue';
+    
 
     export default {
     name: 'RegisterForm',
 
     components:{
-        HeaderBar
+      
     },
 
     
@@ -102,6 +104,15 @@
     
     <style scoped>
     
+    .header {
+    background-color: rgb(126, 2, 2);
+    padding: 15px;
+    text-align: center; 
+    /*width: 100%;*/
+    margin-top: 0px;
+    color: white;
+    }
+
     .page-container {
     width: 100%;
     height: 100%;
