@@ -1,10 +1,8 @@
 <template>
 <div>
-    <div class="header">
-    <h2 style="color:white;">
-        Mini Vue Project
-    </h2>
-    </div>
+   <!-- <div class="header">
+      <router-link to="/list"><h2 style="color:white;"><a>Mini Vue Project</a></h2></router-link>
+    </div>-->
     <div id="sessnavdiv" class="nav_menu">
       <div class="columnA">
         <!--form id="search" method="post"--> <!--DO NOT USE FORM WITH FUNCTIONS INSIDE-->
