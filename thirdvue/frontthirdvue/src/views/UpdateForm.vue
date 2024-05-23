@@ -1,6 +1,7 @@
 <template>
     <div class="page-container">
        <HeaderBar />
+       <FormBar/>
    
        <div  class="updatediv">
        
@@ -35,13 +36,14 @@
    
    <script>
    import axios from 'axios';
-
+   import FormBar from '../components/FormBar.vue';
    import HeaderBar from '../components/HeaderBar.vue';
    
    export default {
     name: 'UpdateBoard',
     components:{
-        HeaderBar
+        HeaderBar,
+        FormBar
     },
 
     data() {
