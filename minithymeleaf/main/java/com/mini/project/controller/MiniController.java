@@ -302,6 +302,11 @@ public class MiniController {
 				 
 				 
 				 @RequestMapping(value="/allSearch" , method = {RequestMethod.GET, RequestMethod.POST})
+				  /*  public String allSearch(){
+				        return "allSearch"; //returns allSearch.html
+				    }*/
+				 
+				 //new==========>
 				     public ModelAndView combinedList(ModelAndView model) throws Exception {
 					 List<Map<String, String>> alllist = service.getAllCombined();
 				      model.addObject("alllist", alllist);
@@ -309,12 +314,15 @@ public class MiniController {
 
 				      return model;
 				 }
-				     
+
+				 //============<
+				 
 				 
 				 @RequestMapping(value="/searchAll" , method = {RequestMethod.GET, RequestMethod.POST})
-				 public ModelAndView searchAll(@RequestParam(value ="searchword", required = false) String searchword, HttpServletRequest request, HttpServletResponse response, Model model2) throws Exception {
+				 public ModelAndView searchAll(@RequestParam(value ="searchword", required = false) String searchword, @RequestParam(value ="searchoptions", required = false) String searchoptions, 
+						 HttpServletRequest request, HttpServletResponse response) throws Exception {
 					 ModelAndView model = new ModelAndView();	
-					 List<Map<String, String>> searchall = service.searchAll(searchword);
+					 List<Map<String, String>> searchall = service.searchAll(searchword, searchoptions);
 				
 					 model.addObject("alllist", searchall); 
 					 model.setViewName("allSearch");
@@ -322,6 +330,7 @@ public class MiniController {
 		             
 				 }
 				
+				 
 }
 
         
